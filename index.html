@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>INTERVIEW </title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Markings HUD</title>
+    <style>
+        :root {
+            --bg-color: #0d0e15;
+            --panel-bg: #161925;
+            --primary: #00ff66;
+            --secondary: #ff0055;
+            --text: #ffffff;
+            --text-muted: #8b9bb4;
+            --border: #2f354a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--panel-bg);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 26px;
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
+        }
+
+        .footer-branding {
+            text-align: center;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-top: 25px;
+        }
+
+        .lime-text {
+            color: #39ff14;
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        input[type="text"], input[type="password"], select {
+            width: 100%;
+            padding: 12px;
+            background: #090a0f;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 8px rgba(0, 255, 102, 0.2);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .btn {
+            width: 100%;
+            background: var(--primary);
+            color: #000;
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: #00cc52;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 255, 102, 0.1);
+        }
+
+        .questions-container {
+            margin-top: 30px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+
+        .q-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #090a0f;
+            margin-bottom: 8px;
+            border-left: 3px solid var(--secondary);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .q-label {
+            font-weight: bold;
+            color: var(--text);
+        }
+
+        .q-select {
+            width: auto !important;
+            min-width: 100px;
+            padding: 6px 10px !important;
+        }
+
+        .error-msg {
+            color: var(--secondary);
+            font-size: 14px;
+            margin-top: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>INTERVIEW MARKINGS</h1>
+    
+    <div id="authPhase">
+        <div class="form-group">
+            <label for="password">Enter Access Code</label>
+            <input type="password" id="password" placeholder="••••">
+            <div id="authError" class="error-msg"></div>
+        </div>
+        <button class="btn" onclick="verifyPassword()">INITIALIZE</button>
+    </div>
+
+    <div id="setupPhase" class="hidden">
+        <div class="form-group">
+            <label for="candidateName">Candidate Name</label>
+            <input type="text" id="candidateName" placeholder="Player 1 Name...">
+        </div>
+
+        <div class="form-group">
+            <label for="organization">Faction / Organization</label>
+            <select id="organization">
+                <option value="MIA">MIA</option>
+                <option value="FSB">FSB</option>
+                <option value="TP">TP</option>
+                <option value="ACH">ACH</option>
+                <option value="YCH">YCH</option>
+                <option value="GF">GF</option>
+                <option value="RTV">RTV</option>
+                <option value="OTV">OTV</option>
+                <option value="RL">RL</option>
+                <option value="PB">PB</option>
+                <option value="IZMA">IZMA</option>
+                <option value="TAMB">TAMB</option>
+                <option value="ATI">ATI</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="numQuestions">Quest Count (Questions)</label>
+            <select id="numQuestions">
+                <option value="10">10 Questions</option>
+                <option value="15">15 Questions</option>
+                <option value="20">20 Questions</option>
+                <option value="25">25 Questions</option>
+            </select>
+        </div>
+
+        <button class="btn" onclick="generateQuestions()">LOAD QUESTS</button>
+    </div>
+
+    <div id="markingPhase" class="hidden">
+        <h3 style="color: var(--text-muted); text-transform: uppercase; font-size: 14px; margin-bottom: 15px;">Assign Marks</h3>
+        <div id="questionsWrapper" class="questions-container"></div>
+        
+        <button class="btn" onclick="submitReport()">TRANSMIT REPORT</button>
+        <button class="btn btn-secondary" onclick="backToSetup()" style="margin-top: 10px;">BACK</button>
+    </div>
+
+    <div class="footer-branding">Powered by <span class="lime-text">Lord_Lion</span></div>
+</div>
+
+<script>
+    const CONFIG = {
+        BOT_TOKEN: '8939640957:AAF5n2lQmDOt3LEhvbPk80kCumNl50UxVwE',
+        CHAT_ID: '5599632633',
+        PASS: '1718'
+    };
+
+    function verifyPassword() {
+        const passInput = document.getElementById('password').value;
+        const errorDiv = document.getElementById('authError');
+        
+        if (passInput === CONFIG.PASS) {
+            document.getElementById('authPhase').classList.add('hidden');
+            document.getElementById('setupPhase').classList.remove('hidden');
+        } else {
+            errorDiv.innerText = "ACCESS DENIED: INVALID CODE";
+        }
+    }
+
+    function generateQuestions() {
+        const name = document.getElementById('candidateName').value.trim();
+        if(!name) {
+            alert('Please enter a Candidate Name');
+            return;
+        }
+
+        const numQ = parseInt(document.getElementById('numQuestions').value);
+        const wrapper = document.getElementById('questionsWrapper');
+        wrapper.innerHTML = ''; 
+
+        for (let i = 1; i <= numQ; i++) {
+            const row = document.createElement('div');
+            row.className = 'q-row';
+            
+            row.innerHTML = `
+                <span class="q-label">Q${String(i).padStart(2, '0')} Score</span>
+                <select class="q-select q-score-input">
+                    <option value="0">0.00</option>
+                    <option value="0.25">0.25</option>
+                    <option value="0.5">0.50</option>
+                    <option value="0.75">0.75</option>
+                    <option value="1">1.00</option>
+                    <option value="1.5">1.50</option>
+                    <option value="2">2.00</option>
+                </select>
+            `;
+            wrapper.appendChild(row);
+        }
+
+        document.getElementById('setupPhase').classList.add('hidden');
+        document.getElementById('markingPhase').classList.remove('hidden');
+    }
+
+    function backToSetup() {
+        document.getElementById('markingPhase').classList.add('hidden');
+        document.getElementById('setupPhase').classList.remove('hidden');
+    }
+
+    async function submitReport() {
+        const name = document.getElementById('candidateName').value;
+        const org = document.getElementById('organization').value;
+        const scoreSelects = document.querySelectorAll('.q-score-input');
+        
+        let totalScore = 0;
+        let maxPossibleScore = scoreSelects.length * 2; 
+        let breakdown = '';
+
+        scoreSelects.forEach((select, index) => {
+            const score = parseFloat(select.value);
+            totalScore += score;
+            breakdown += `🎮 Q${index + 1}: ${score.toFixed(2)}\n`;
+        });
+
+        let percentage = ((totalScore / maxPossibleScore) * 100).toFixed(2);
+
+        let message = `🏆 *INTERVIEW TELEMETRY REPORT* 🏆\n\n`;
+        message += `👤 *Candidate:* ${name}\n`;
+        message += `🏢 *Organization:* ${org}\n`;
+        message += `📊 *Total Questions:* ${scoreSelects.length}\n`;
+        message += `----------------------------\n`;
+        message += breakdown;
+        message += `----------------------------\n`;
+        message += `⭐ *Final Score:* ${totalScore.toFixed(2)} / ${maxPossibleScore.toFixed(2)}\n`;
+        message += `📈 *Performance:* ${percentage}%\n\n`;
+        message += `⚡ _Powered by Lord_Lion_`;
+
+        const url = `https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`;
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: CONFIG.CHAT_ID,
+                    text: message,
+                    parse_mode: 'Markdown'
+                })
+            });
+
+            if (response.ok) {
+                alert('🚀 Telemetry transmitted successfully to Telegram Bot!');
+                location.reload();
+            } else {
+                alert('❌ Error broadcasting metrics to Telegram API.');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('❌ Local transmission crash. Check network.');
+        }
+    }
+</script>
+
+</body>
+</html>
+    
+  </body>
+  
+</html>
